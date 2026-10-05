@@ -15,6 +15,9 @@ export const brand = {
   tagline: "Parce que toute histoire mérite d’être contée.",
 };
 
+export const imageUrl = (filename: string) =>
+  `${import.meta.env.BASE_URL}images/${filename}`;
+
 // Les textes de concept ci-dessous sont provisoires et doivent être validés par la cliente.
 export const conceptCopy = {
   intro:
@@ -35,7 +38,7 @@ export const episodes: Episode[] = [
     kind: "Épisode",
     summary:
       "Une première conversation autour d’un parcours et d’une rencontre. Le résumé éditorial détaillé sera ajouté après validation.",
-    image: "/images/episode-hajira.jpg",
+    image: imageUrl("episode-hajira.jpg"),
   },
   {
     slug: "bande-annonce",
@@ -43,7 +46,7 @@ export const episodes: Episode[] = [
     guest: "Safietou Kane",
     kind: "Bande-annonce",
     summary: "Un aperçu du balado et des voix qui s’y rencontrent.",
-    image: "/images/episode-hajira.jpg",
+    image: imageUrl("episode-hajira.jpg"),
   },
 ];
 

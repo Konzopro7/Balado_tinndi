@@ -16,6 +16,10 @@ npm run build
 npm run preview
 ```
 
+## Déploiement GitHub Pages
+
+Le workflow `.github/workflows/deploy-pages.yml` compile le site et déploie le contenu de `dist`. Dans les paramètres du dépôt, la source GitHub Pages doit être réglée sur **GitHub Actions**. Le workflow construit avec `VITE_BASE_PATH=/Balado_tinndi/`, le chemin du dépôt public. Il génère aussi `dist/404.html` afin que les pages internes restent accessibles lors d’un rechargement direct.
+
 ## Mettre à jour le contenu
 
 - Les épisodes, coordonnées, liens sociaux et textes provisoires du concept se trouvent dans `src/data/site.ts`.

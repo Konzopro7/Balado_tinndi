@@ -19,6 +19,7 @@ import {
   brand,
   conceptCopy,
   episodes,
+  imageUrl,
   socials,
   type Episode,
 } from "./data/site";
@@ -42,18 +43,24 @@ const nav = [
 ] as const;
 
 function usePath() {
-  const [path, setPath] = useState(
-    window.location.pathname.replace(/\/$/, "") || "/",
-  );
+  const base = import.meta.env.BASE_URL;
+  const currentRoute = () => {
+    let pathname = window.location.pathname;
+    if (base !== "/" && pathname.startsWith(base)) {
+      pathname = `/${pathname.slice(base.length)}`;
+    }
+    return pathname.replace(/\/$/, "") || "/";
+  };
+  const [path, setPath] = useState(currentRoute);
   useEffect(() => {
-    const pop = () =>
-      setPath(window.location.pathname.replace(/\/$/, "") || "/");
+    const pop = () => setPath(currentRoute());
     window.addEventListener("popstate", pop);
     return () => window.removeEventListener("popstate", pop);
   }, []);
   const go = (to: string) => {
     if (to !== path) {
-      history.pushState({}, "", to);
+      const destination = to === "/" ? base : `${base}${to.replace(/^\//, "")}`;
+      history.pushState({}, "", destination);
       setPath(to);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -264,7 +271,7 @@ function App() {
           aria-label="Balado Tinndi, accueil"
         >
           <span className="brand-mark">
-            <img src="/images/logo-tinndi.jpg" alt="" />
+            <img src={imageUrl("logo-tinndi.jpg")} alt="" />
           </span>
           <span className="brand-word">
             <b>tinndi</b>
@@ -403,7 +410,7 @@ function Home({
         <div className="hero-image-wrap">
           <img
             className="hero-image"
-            src="/images/episode-hajira.jpg"
+            src={imageUrl("episode-hajira.jpg")}
             alt="Safietou Kane en conversation avec son invitée Hadjira Belkacem"
             fetchPriority="high"
           />
@@ -506,7 +513,7 @@ function Home({
       </section>
       <section className="pulaar-section section-pad">
         <div className="pulaar-visual reveal">
-          <img src="/images/episode-hajira.jpg" alt="" loading="lazy" />
+          <img src={imageUrl("episode-hajira.jpg")} alt="" loading="lazy" />
           <div className="pulaar-stamp">
             TINNDI
             <br />
@@ -541,7 +548,7 @@ function HostTeaser({ navigate }: { navigate: (to: string) => void }) {
     <section className="host-strip">
       <div className="host-strip-photo">
         <img
-          src="/images/episode-hajira.jpg"
+          src={imageUrl("episode-hajira.jpg")}
           alt="Safietou Kane, présentatrice de Balado Tinndi"
           loading="lazy"
         />
@@ -628,7 +635,7 @@ function Balado({ navigate }: { navigate: (to: string) => void }) {
           </>
         }
         text={conceptCopy.intro}
-        image="/images/episode-hajira.jpg"
+        image={imageUrl("episode-hajira.jpg")}
       />
       <section className="values-grid section-pad">
         {[
@@ -653,7 +660,7 @@ function Host({ navigate }: { navigate: (to: string) => void }) {
     <section className="host-page section-pad">
       <div className="host-page-image reveal">
         <img
-          src="/images/episode-hajira.jpg"
+          src={imageUrl("episode-hajira.jpg")}
           alt="Safietou Kane en conversation avec Hadjira Belkacem"
         />
         <span className="host-image-note">SAFIETOU KANE · PRÉSENTATRICE</span>
@@ -1110,7 +1117,7 @@ function Footer({ navigate }: { navigate: (to: string) => void }) {
       <div className="footer-main">
         <button className="footer-brand" onClick={() => navigate("/")}>
           <span className="footer-logo">
-            <img src="/images/logo-tinndi.jpg" alt="" />
+            <img src={imageUrl("logo-tinndi.jpg")} alt="" />
           </span>
           <span>
             <b>tinndi</b>
