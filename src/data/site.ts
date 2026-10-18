@@ -17,11 +17,14 @@ export const brand = {
 
 export const hostBio = {
   intro:
-    "Je suis Safiétou Kane. À 38 ans, je suis une femme, une épouse, une maman et une coordonnatrice. Née à Dakar, au Sénégal, je suis la cadette d’une famille de cinq enfants.",
+    "Je m’appelle Safiétou Kane. Je suis une femme, une épouse, une maman et une coordonnatrice de 38 ans. Je suis née à Dakar, au Sénégal, et je suis la cadette d’une famille de cinq enfants.",
   paragraphs: [
-    "J’ai étudié la sociologie à l’Université Cheikh Anta Diop de Dakar avant de m’installer à Montréal, en 2008, pour rejoindre ma sœur et sa famille. Je détiens un baccalauréat en sociologie et j’ai treize ans d’expérience dans le milieu communautaire, où se rencontrent les luttes sociales, les personnes, les programmes et la conviction qu’un changement est possible à tous les niveaux de la société.",
-    "La lecture et l’écriture me passionnent. Cet amour des mots m’a été transmis par mon père, philosophe, professeur d’université et écrivain. J’ai écrit Sinthiel, un roman paru il y a cinq ans, qui raconte l’histoire d’amour de deux êtres que tout sépare, notamment la religion, et leur découverte d’autres pays, cultures et croyances.",
-    "J’ai toujours envie de coucher sur papier ce qui me passe par la tête, même si mes responsabilités d’épouse, de mère, de sœur, d’amie et d’employée ne me laissent pas toujours le temps d’écrire autant que je le voudrais.",
+    "J’ai étudié la sociologie à l’Université Cheikh Anta Diop de Dakar avant de m’installer à Montréal, en 2008, où j’ai rejoint ma sœur et sa famille. J’ai obtenu un baccalauréat en sociologie et cela fait treize ans que je travaille dans le milieu communautaire, un milieu qui rassemble les luttes et les causes sociales, des personnes, des programmes et de fortes convictions en faveur du changement à tous les niveaux de la société.",
+    "Je suis passionnée de lecture et d’écriture. Cet amour des mots m’a été transmis par mon père, philosophe, professeur d’université et écrivain. J’ai écrit Sinthiel, paru il y a cinq ans, une histoire d’amour entre deux êtres que tout sépare, principalement la religion, mais aussi une découverte de pays, de cultures et de croyances différentes des leurs.",
+    "J’ai toujours envie de coucher sur papier tout ce qui me passe par la tête, même si mes différentes responsabilités d’épouse, de mère, de sœur, d’amie et d’employée ne me permettent pas d’écrire autant que je le voudrais.",
+    "L’idée du balado m’est venue de mon amour des lettres, des mots et des échanges. Un mot de ma langue maternelle, qui évoque à la fois l’histoire, l’imaginaire et le temps, m’a traversé l’esprit : Tinndi, qui signifie « les contes » en pulaar. Je me suis demandé ce que je pourrais en faire : un texte, une histoire, un roman, peut-être un jour.",
+    "Chaque histoire, chaque vécu, chaque expérience peut être vu comme un conte, une envie de raconter, de partager et d’inspirer. Tinndi est ainsi devenu un espace où des hommes et des femmes, des jeunes et des moins jeunes, des personnes aimantes, inspirées et inspirantes, dévouées, curieuses et investies dans une mission, quelle qu’elle soit, viennent partager un bout de cette mission.",
+    "Tinndi ira à la rencontre d’hommes et de femmes qui, à travers leurs vécus, leurs rêves et leurs aspirations, nous conteront une partie de leur histoire. Parce qu’à la fin, toute histoire mérite d’être contée.",
   ],
 };
 
