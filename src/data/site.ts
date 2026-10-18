@@ -53,6 +53,7 @@ export const episodes: Episode[] = [
     summary:
       "Une première conversation autour d’un parcours et d’une rencontre. Le résumé éditorial détaillé sera ajouté après validation.",
     image: imageUrl("episode-hajira.jpg"),
+    videoUrl: "https://youtu.be/sV2q11Kh0QQ",
   },
   {
     slug: "bande-annonce",
