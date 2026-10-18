@@ -2,7 +2,7 @@ export type Episode = {
   slug: string;
   title: string;
   guest: string;
-  kind: "Épisode" | "Bande-annonce";
+  kind: "Épisode" | "Teaser";
   summary: string;
   image: string;
   videoUrl?: string;
@@ -56,11 +56,12 @@ export const episodes: Episode[] = [
   },
   {
     slug: "bande-annonce",
-    title: "La bande-annonce de Tinndi",
+    title: "Le voici! Le teaser du premier de votre Balado Tinndi",
     guest: "Safiétou Kane",
-    kind: "Bande-annonce",
-    summary: "Un aperçu du balado et des voix qui s’y rencontrent.",
-    image: imageUrl("episode-hajira.jpg"),
+    kind: "Teaser",
+    summary: "Le teaser de lancement de Balado Tinndi.",
+    image: imageUrl("teaser-tinndi.jpg"),
+    videoUrl: "https://youtu.be/OHH-kr6MnFA",
   },
 ];
 

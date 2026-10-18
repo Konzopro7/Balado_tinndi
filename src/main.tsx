@@ -109,7 +109,7 @@ function App() {
       if (e.key === "Escape") closeModal();
       if (e.key === "Tab") {
         const nodes = document.querySelectorAll<HTMLElement>(
-          ".modal-dialog button, .modal-dialog a, .modal-dialog video[controls]",
+          ".modal-dialog button, .modal-dialog a, .modal-dialog video[controls], .modal-dialog iframe",
         );
         const first = nodes[0],
           last = nodes[nodes.length - 1];
@@ -141,7 +141,9 @@ function App() {
       episodes.filter(
         (item) =>
           filter !== "Expressions en pulaar" &&
-          (filter === "Tout" || item.kind === filter) &&
+          (filter === "Tout" ||
+            item.kind === filter ||
+            (filter === "Teasers" && item.kind === "Teaser")) &&
           `${item.title} ${item.guest} ${item.summary}`
             .toLowerCase()
             .includes(search.toLowerCase()),
@@ -593,13 +595,19 @@ function EpisodeCard({
       className={`episode-card reveal ${index ? "episode-card-offset" : ""}`}
     >
       <button
-        className="episode-image"
+        className={`episode-image ${item.kind === "Teaser" ? "episode-image-portrait" : ""}`}
         onClick={() =>
           item.videoUrl ? onOpen() : navigate(`/episodes/${item.slug}`)
         }
         aria-label={`Voir ${item.title}`}
       >
-        <img src={item.image} alt="" loading="lazy" />
+        <img
+          src={item.image}
+          alt={
+            item.kind === "Teaser" ? "Visuel du teaser de Balado Tinndi" : ""
+          }
+          loading="lazy"
+        />
         <span className="episode-tag">
           <i />
           {item.kind}
@@ -757,8 +765,8 @@ function Library({
 }) {
   const isVideos = page === "/videos";
   const filters = isVideos
-    ? ["Tout", "Épisode", "Bande-annonce", "Expressions en pulaar"]
-    : ["Tout", "Épisode", "Bande-annonce"];
+    ? ["Tout", "Épisode", "Teasers", "Expressions en pulaar"]
+    : ["Tout", "Épisode", "Teasers"];
   return (
     <section className="library-page section-pad">
       <div className="library-heading reveal">
@@ -1187,6 +1195,7 @@ function VideoModal({
   close: () => void;
   closeRef: React.RefObject<HTMLButtonElement | null>;
 }) {
+  const embedUrl = item.videoUrl ? getYoutubeEmbedUrl(item.videoUrl) : null;
   return (
     <div
       className="modal-backdrop"
@@ -1210,7 +1219,15 @@ function VideoModal({
           <X />
         </button>
         <div className="modal-video">
-          {item.videoUrl ? (
+          {embedUrl ? (
+            <iframe
+              src={embedUrl}
+              title={item.title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          ) : item.videoUrl ? (
             <video
               src={item.videoUrl}
               controls
@@ -1233,6 +1250,25 @@ function VideoModal({
       </section>
     </div>
   );
+}
+
+function getYoutubeEmbedUrl(url: string) {
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname.replace(/^www\./, "");
+    let videoId: string | null = null;
+    if (host === "youtu.be") videoId = parsed.pathname.slice(1);
+    if (host === "youtube.com" || host === "m.youtube.com") {
+      videoId = parsed.searchParams.get("v");
+      if (!videoId && parsed.pathname.startsWith("/shorts/")) {
+        videoId = parsed.pathname.split("/")[2] ?? null;
+      }
+    }
+    if (!videoId || !/^[\w-]{11}$/.test(videoId)) return null;
+    return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+  } catch {
+    return null;
+  }
 }
 
 createRoot(document.getElementById("root")!).render(
