@@ -2085,6 +2085,72 @@ a {
   object-position: center;
   transform: none;
 }
+.tinndi-story {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: start;
+  gap: clamp(35px, 8vw, 110px);
+  background: var(--forest);
+  color: #fff7e8;
+}
+.tinndi-story .eyebrow {
+  color: #d6c59f;
+}
+.tinndi-story h2 {
+  margin: 18px 0 0;
+  font: 500 clamp(34px, 4.2vw, 55px) / 1.16 var(--serif);
+  letter-spacing: -0.025em;
+}
+.tinndi-story h2 em {
+  color: #dcbd78;
+  font-weight: 500;
+}
+.tinndi-story-copy p {
+  margin: 0 0 16px;
+  color: #e0e1d6;
+  font-size: 13px;
+  line-height: 1.85;
+}
+.tinndi-definition {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: 0 12px;
+  width: fit-content;
+  margin-top: 24px;
+  padding: 12px 17px;
+  border: 1px solid #d7c39773;
+}
+.tinndi-definition b {
+  grid-row: span 2;
+  color: #e6ca8b;
+  font: 600 26px var(--serif);
+}
+.tinndi-definition i {
+  color: #c2c9bd;
+  font-size: 9px;
+  font-style: normal;
+  letter-spacing: 0.08em;
+}
+.tinndi-definition > span {
+  color: #fff7e8;
+  font: 14px var(--serif);
+}
+.host-page {
+  align-items: start;
+}
+.host-bio-copy p {
+  margin: 0 0 15px;
+  color: #6f756a;
+  font-size: 12px;
+  line-height: 1.85;
+}
+@media (max-width: 600px) {
+  .tinndi-story {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
 @media (max-width: 860px) {
   .brand-mark {
     width: 40px;

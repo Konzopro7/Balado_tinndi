@@ -19,6 +19,7 @@ import {
   brand,
   conceptCopy,
   episodes,
+  hostBio,
   imageUrl,
   socials,
   type Episode,
@@ -36,7 +37,7 @@ const routeMap = [
 ];
 const nav = [
   ["Le balado", "/balado"],
-  ["Safietou Kane", "/safietou-kane"],
+  ["Safiétou Kane", "/safietou-kane"],
   ["Épisodes", "/episodes"],
   ["Vidéos", "/videos"],
   ["Collaborations", "/collaborations"],
@@ -167,15 +168,15 @@ function App() {
     const titles: Record<string, [string, string]> = {
       "/": [
         "Balado Tinndi — Toute histoire mérite d’être contée",
-        "Des voix, des parcours et des rencontres avec Safietou Kane. Parce que toute histoire mérite d’être contée.",
+        "Des voix, des parcours et des rencontres avec Safiétou Kane. Parce que toute histoire mérite d’être contée.",
       ],
       "/balado": [
         "Le balado — Balado Tinndi",
         "Découvrez le concept, la vision et les valeurs de Balado Tinndi.",
       ],
       "/safietou-kane": [
-        "Safietou Kane — Balado Tinndi",
-        "Découvrez Safietou Kane, présentatrice de Balado Tinndi. Sa biographie détaillée sera ajoutée prochainement.",
+        "Safiétou Kane — Balado Tinndi",
+        "Découvrez Safiétou Kane, présentatrice de Balado Tinndi, son parcours, son amour des mots et l’origine du balado.",
       ],
       "/episodes": [
         "Épisodes et invitées — Balado Tinndi",
@@ -403,7 +404,7 @@ function Home({
           <div className="hero-byline">
             <span className="byline-line" />
             <span>
-              Un balado présenté par <b>Safietou Kane</b>
+              Un balado présenté par <b>Safiétou Kane</b>
             </span>
           </div>
         </div>
@@ -411,7 +412,7 @@ function Home({
           <img
             className="hero-image"
             src={imageUrl("episode-hajira.jpg")}
-            alt="Safietou Kane en conversation avec son invitée Hadjira Belkacem"
+            alt="Safiétou Kane en conversation avec son invitée Hadjira Belkacem"
             fetchPriority="high"
           />
           <div className="hero-image-fade" />
@@ -549,7 +550,7 @@ function HostTeaser({ navigate }: { navigate: (to: string) => void }) {
       <div className="host-strip-photo">
         <img
           src={imageUrl("episode-hajira.jpg")}
-          alt="Safietou Kane, présentatrice de Balado Tinndi"
+          alt="Safiétou Kane, présentatrice de Balado Tinndi"
           loading="lazy"
         />
       </div>
@@ -561,14 +562,14 @@ function HostTeaser({ navigate }: { navigate: (to: string) => void }) {
           <em>à la rencontre du monde.</em>
         </h2>
         <p>
-          Safietou Kane vous accueille dans un espace où chacun peut déposer son
+          Safiétou Kane vous accueille dans un espace où chacun peut déposer son
           histoire, à son rythme.
         </p>
         <button
           className="button button-light"
           onClick={() => navigate("/safietou-kane")}
         >
-          Rencontrer Safietou <ArrowRight size={16} />
+          Rencontrer Safiétou <ArrowRight size={16} />
         </button>
       </div>
       <div className="host-strip-number">01 / PRÉSENTATION</div>
@@ -650,6 +651,25 @@ function Balado({ navigate }: { navigate: (to: string) => void }) {
           </article>
         ))}
       </section>
+      <section className="tinndi-story section-pad">
+        <div className="tinndi-story-heading reveal">
+          <span className="eyebrow">À L’ORIGINE DU NOM</span>
+          <h2>
+            Un mot, une langue,
+            <br />
+            <em>des histoires à transmettre.</em>
+          </h2>
+        </div>
+        <div className="tinndi-story-copy reveal">
+          <p>{conceptCopy.origin}</p>
+          <p>{conceptCopy.promise}</p>
+          <span className="tinndi-definition">
+            <b>Tinndi</b>
+            <i>nom, pulaar</i>
+            <span>les contes</span>
+          </span>
+        </div>
+      </section>
       <PartnershipBand navigate={navigate} />
     </>
   );
@@ -661,25 +681,20 @@ function Host({ navigate }: { navigate: (to: string) => void }) {
       <div className="host-page-image reveal">
         <img
           src={imageUrl("episode-hajira.jpg")}
-          alt="Safietou Kane en conversation avec Hadjira Belkacem"
+          alt="Safiétou Kane en conversation avec Hadjira Belkacem"
         />
-        <span className="host-image-note">SAFIETOU KANE · PRÉSENTATRICE</span>
+        <span className="host-image-note">SAFIÉTOU KANE · PRÉSENTATRICE</span>
       </div>
       <div className="host-page-copy reveal">
         <span className="eyebrow">LA PRÉSENTATRICE</span>
         <h1>
-          Safietou <em>Kane.</em>
+          Safiétou <em>Kane.</em>
         </h1>
-        <p className="lead">
-          La personne derrière le micro, à la rencontre de celles et ceux qui
-          ont une histoire à partager.
-        </p>
-        <div className="pending-note">
-          <span className="pending-dot" />
-          <p>
-            La biographie, le parcours scolaire et les passions de Safietou
-            seront ajoutés ici, avec les informations qu’elle souhaite partager.
-          </p>
+        <p className="lead">{hostBio.intro}</p>
+        <div className="host-bio-copy">
+          {hostBio.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
         </div>
         <button className="text-link" onClick={() => navigate("/episodes")}>
           Découvrir ses rencontres <ArrowRight size={15} />
