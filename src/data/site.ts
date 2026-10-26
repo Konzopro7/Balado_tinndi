@@ -54,7 +54,7 @@ export const episodes: Episode[] = [
     guest: "Hadjira Belkacem",
     kind: "Épisode",
     summary:
-      "Une première conversation autour d’un parcours et d’une rencontre. Le résumé éditorial détaillé sera ajouté après validation.",
+      "Arrivée au Québec il y a plus de quinze ans, Hadjira Belkacem s’engage auprès des familles musulmanes, des jeunes et de sa communauté.",
     image: imageUrl("episode-hajira.jpg"),
     videoUrl: "https://youtu.be/sV2q11Kh0QQ",
   },

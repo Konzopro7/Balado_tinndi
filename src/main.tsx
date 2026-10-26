@@ -934,16 +934,48 @@ function GuestDetail({ navigate }: { navigate: (to: string) => void }) {
     <section className="simple-page">
       <span className="eyebrow">INVITÉE · TINNDI</span>
       <h1>Hadjira Belkacem</h1>
-      <p>
-        La biographie de l’invitée sera ajoutée lorsqu’elle aura été transmise.
-      </p>
-      <button
+      <div className="guest-bio-copy">
+        <p>
+          Algérienne d’origine, arrivée au Québec il y a plus de quinze ans,
+          Hadjira Belkacem est éducatrice à la petite enfance de formation et
+          s’engage à plusieurs niveaux de la société québécoise. Pionnière en
+          matière d’arrangements funéraires, elle a fondé l’Association de la
+          sépulture musulmane. L’organisme aide les personnes musulmanes
+          décédées au Canada et au Québec à être enterrées dans leur pays
+          d’accueil.
+        </p>
+        <p>
+          L’association organise également des levées de fonds pour les
+          rapatriements et apporte son aide dans différentes situations.
+          Hadjira a aussi été propriétaire d’un service de garde à domicile.
+          Passionnée par l’éducation à la petite enfance, elle a exercé pendant
+          quinze ans avant de quitter ce métier à la suite de la loi
+          provinciale interdisant le port du voile aux personnes en position
+          d’autorité, notamment aux enseignantes et aux éducatrices. Elle
+          continue aujourd’hui d’accompagner et de conseiller des éducatrices
+          et d’autres actrices du milieu grâce à son expertise.
+        </p>
+        <p>
+          Hadjira s’est ensuite tournée vers l’élevage avec sa ferme Niska, un
+          projet auquel elle se dévoue avec des jeunes : gestion de fermettes
+          et accueil du public les fins de semaine. Elle reste engagée dans
+          les combats autour de l’injustice, des inégalités sociales, de la
+          violence juvénile et des droits des minorités.
+        </p>
+      </div>
+      <a
         className="button"
-        onClick={() =>
-          navigate("/episodes/safietou-kane-recoit-hadjira-belkacem")
-        }
+        href="https://youtu.be/sV2q11Kh0QQ"
+        target="_blank"
+        rel="noreferrer"
       >
-        Voir la rencontre <ArrowRight size={16} />
+        Découvrir l’épisode complet <ArrowUpRight size={16} />
+      </a>
+      <button
+        className="text-link guest-back-link"
+        onClick={() => navigate("/episodes/safietou-kane-recoit-hadjira-belkacem")}
+      >
+        Voir la fiche de l’épisode <ArrowRight size={15} />
       </button>
     </section>
   );
