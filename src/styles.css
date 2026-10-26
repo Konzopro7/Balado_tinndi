@@ -1392,6 +1392,12 @@ a {
   font-size: 12px;
   line-height: 1.8;
 }
+.detail-copy > .detail-date {
+  margin: 0 0 10px;
+  color: #8b806d;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
 .simple-page {
   min-height: 72vh;
   padding: 210px clamp(22px, 12vw, 180px) 90px;

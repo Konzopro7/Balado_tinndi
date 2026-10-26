@@ -911,18 +911,23 @@ function Detail({
           </p>
           <button
             className="text-link guest-link"
-            onClick={() => navigate("/invites/hadjira-belkacem")}
+            onClick={() =>
+              navigate(
+                item.kind === "Teaser"
+                  ? "/episodes/safietou-kane-recoit-hadjira-belkacem"
+                  : "/invites/hadjira-belkacem",
+              )
+            }
           >
-            Découvrir l’invitée <ArrowUpRight size={14} />
+            {item.kind === "Teaser"
+              ? "Découvrir le premier épisode"
+              : "Découvrir l’invitée"}{" "}
+            <ArrowUpRight size={14} />
           </button>
+          {item.publishedAt && (
+            <p className="detail-date">Publié le {item.publishedAt}</p>
+          )}
           <p>{item.summary}</p>
-          <div className="pending-note">
-            <span className="pending-dot" />
-            <p>
-              La date, la durée et le résumé final seront ajoutés lorsque ces
-              informations seront confirmées.
-            </p>
-          </div>
         </div>
       </div>
     </section>

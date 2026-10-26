@@ -5,6 +5,7 @@ export type Episode = {
   kind: "Épisode" | "Teaser";
   summary: string;
   image: string;
+  publishedAt?: string;
   videoUrl?: string;
 };
 
@@ -56,6 +57,7 @@ export const episodes: Episode[] = [
     summary:
       "Arrivée au Québec il y a plus de quinze ans, Hadjira Belkacem s’engage auprès des familles musulmanes, des jeunes et de sa communauté.",
     image: imageUrl("episode-hajira.jpg"),
+    publishedAt: "23 septembre 2026",
     videoUrl: "https://youtu.be/sV2q11Kh0QQ",
   },
   {
@@ -63,8 +65,10 @@ export const episodes: Episode[] = [
     title: "Le voici! Le teaser du premier de votre Balado Tinndi",
     guest: "Safiétou Kane",
     kind: "Teaser",
-    summary: "Le teaser de lancement de Balado Tinndi.",
+    summary:
+      "Dans ce teaser, Safiétou Kane présente son premier épisode et sa rencontre avec Hadjira Belkacem. Elles évoquent notamment le parcours d’Hadjira dans un secteur longtemps réservé aux hommes.",
     image: imageUrl("teaser-tinndi.jpg"),
+    publishedAt: "12 septembre 2026",
     videoUrl: "https://youtu.be/OHH-kr6MnFA",
   },
 ];
