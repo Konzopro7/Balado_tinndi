@@ -591,9 +591,7 @@ function EpisodeCard({
   navigate: (to: string) => void;
 }) {
   return (
-    <article
-      className={`episode-card reveal ${index ? "episode-card-offset" : ""}`}
-    >
+    <article className={`episode-card ${index ? "episode-card-offset" : ""}`}>
       <button
         className={`episode-image ${item.kind === "Teaser" ? "episode-image-portrait" : ""}`}
         onClick={() =>
