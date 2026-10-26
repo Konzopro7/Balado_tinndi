@@ -541,8 +541,113 @@ function Home({
           </span>
         </div>
       </section>
+      <NewsletterSection />
       <PartnershipBand navigate={navigate} />
     </>
+  );
+}
+
+function NewsletterSection() {
+  const [email, setEmail] = useState("");
+  const [state, setState] = useState<"idle" | "error" | "sent" | "draft" | "failed" | "busy">("idle");
+
+  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const address = email.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(address)) {
+      setState("error");
+      return;
+    }
+
+    const endpoint = import.meta.env.VITE_NEWSLETTER_ENDPOINT as
+      | string
+      | undefined;
+    if (endpoint) {
+      setState("busy");
+      fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: address }),
+      })
+        .then((response) => {
+          if (!response.ok) throw new Error("Newsletter signup failed");
+          setState("sent");
+          setEmail("");
+        })
+        .catch(() => setState("failed"));
+      return;
+    }
+
+    const subject = encodeURIComponent("Inscription à l’infolettre Balado Tinndi");
+    const body = encodeURIComponent(
+      `Bonjour,\n\nJe souhaite recevoir les nouvelles de Balado Tinndi à cette adresse : ${address}.\n\nMerci !`,
+    );
+    window.location.href = `mailto:${brand.email}?subject=${subject}&body=${body}`;
+    setState("draft");
+  }
+
+  const message = state === "idle" ? undefined : {
+    error: "Entre une adresse courriel valide.",
+    sent: "Merci ! Ton inscription est confirmée.",
+    draft:
+      "Un courriel est prêt dans ton application de messagerie. Envoie-le pour confirmer ta demande.",
+    failed: "L’inscription n’a pas abouti. Réessaie dans un instant.",
+    busy: "Inscription en cours…",
+  }[state];
+
+  return (
+    <section className="newsletter-section section-pad">
+      <div className="newsletter-inner reveal">
+        <div className="newsletter-copy">
+          <span className="eyebrow eyebrow-light">LES NOUVELLES DE TINNDI</span>
+          <h2>
+            Une histoire à la fois.
+            <br />
+            <em>Restez à l’écoute.</em>
+          </h2>
+          <p>
+            Recevez les nouveaux épisodes, les rencontres et les actualités de
+            Balado Tinndi directement par courriel.
+          </p>
+        </div>
+        <form className="newsletter-form" onSubmit={onSubmit}>
+          <label htmlFor="newsletter-email">Votre adresse courriel</label>
+          <div className="newsletter-field">
+            <input
+              id="newsletter-email"
+              type="email"
+              autoComplete="email"
+              required
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value);
+                if (state !== "idle") setState("idle");
+              }}
+              placeholder="vous@exemple.com"
+            />
+            <button className="button button-light" type="submit" disabled={state === "busy"}>
+              {state === "busy" ? "Inscription…" : "S’inscrire"}
+              <ArrowRight size={16} />
+            </button>
+          </div>
+          <p className="newsletter-privacy">
+            Une infolettre occasionnelle, consacrée aux histoires et aux
+            rencontres de Tinndi.
+          </p>
+          {message && (
+            <p
+              className={`newsletter-message ${state === "error" || state === "failed" ? "is-error" : ""}`}
+              role="status"
+            >
+              {message}
+            </p>
+          )}
+        </form>
+        <span className="newsletter-decoration" aria-hidden="true">
+          t
+        </span>
+      </div>
+    </section>
   );
 }
 

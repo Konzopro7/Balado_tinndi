@@ -30,7 +30,7 @@ Le workflow `.github/workflows/deploy-pages.yml` compile le site et déploie le 
 
 ## Formulaire
 
-Sans configuration, les formulaires valident les champs puis ouvrent un brouillon `mailto:` adressé à `tinndi17@outlook.com`. Le site n’affirme pas que le message a été envoyé. Pour un véritable envoi, configurez `VITE_CONTACT_ENDPOINT` dans `.env.local` avec un service qui accepte une requête JSON contenant `name`, `organization`, `email`, `type` et `message`, puis redémarrez Vite. Le serveur d’envoi doit traiter les erreurs avec des codes HTTP appropriés et appliquer ses protections anti-abus.
+Sans configuration, les formulaires valident les champs puis ouvrent un brouillon `mailto:` adressé à `tinndi17@outlook.com`. Le site n’affirme pas que le message a été envoyé. Pour le formulaire de contact, configurez `VITE_CONTACT_ENDPOINT` dans `.env.local` avec un service qui accepte une requête JSON contenant `name`, `organization`, `email`, `type` et `message`. Pour les inscriptions à l’infolettre, configurez `VITE_NEWSLETTER_ENDPOINT` avec un service qui accepte `{ "email": "..." }`. Les deux services doivent traiter les erreurs avec des codes HTTP appropriés et appliquer leurs protections anti-abus.
 
 ## À compléter avant publication
 
